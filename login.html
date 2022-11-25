@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+</head>
+<script>
+    const password=document.getElementById('password')
+const username=document.getElementById('username')
+document.getElementById('form').addEventListener('submit', (event) => { event.preventDefault()
+valid = true
+const password_value = password.value
+const username_value = username.value
+if (username_value.length <5 || password_value.length < 12) { alert('The form has not been submitted: \n A field is not valid.') 
+valid = false
+}
+
+if (valid)
+
+alert('The form has been completed.\n We will proceed with the sending.')
+
+})
+</script>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><img src="img/logo.png" width="150px" alt="logo"></div>
+            <div class="search">
+                <input type="text"name="" id="" placeholder="Search for Products">
+                <button class="btn">Search</button>
+            </div>
+            <ul>
+                <li><a href="login.html"><button class="login">LOGIN</button></a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="phone.html">Phone&Tablet</a></li>
+                <li><a href="acessories.html">Acessories</a></li>
+                <li><a href="laptop.html">Laptop</a></li>
+                <li><a href="Contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <main>
+            <main>
+                <form id="form" class="container" method="POST">
+        
+                    <h1>Login</h1> <input autocomplete="off" id="username" type="text" placeholder="Username"> <input autocomplete="off" id="password" type="password" placeholder="Password"> <button class="submit" type="submit">Log in</button> </form>
+            </main>
+        </main>
+           
+    </header>
+</body>
+</html>
