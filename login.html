@@ -7,25 +7,9 @@
     <title>login</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/utils.css">
-    <link rel="stylesheet" href="css/mystyle.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<script>
-    const password=document.getElementById('password')
-const username=document.getElementById('username')
-document.getElementById('form').addEventListener('submit', (event) => { event.preventDefault()
-valid = true
-const password_value = password.value
-const username_value = username.value
-if (username_value.length <5 || password_value.length < 12) { alert('The form has not been submitted: \n A field is not valid.') 
-valid = false
-}
 
-if (valid)
-
-alert('The form has been completed.\n We will proceed with the sending.')
-
-})
-</script>
 <body>
     <header>
         <nav>
@@ -37,18 +21,59 @@ alert('The form has been completed.\n We will proceed with the sending.')
             <ul>
                 <li><a href="login.html"><button class="login">LOGIN</button></a></li>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="phone.html">Phone&Tablet</a></li>
+                <li><a href="phone.html">Mobiles</a></li>
                 <li><a href="acessories.html">Acessories</a></li>
                 <li><a href="laptop.html">Laptop</a></li>
                 <li><a href="Contact.html">Contact Us</a></li>
             </ul>
         </nav>
         <main>
-            <main>
-                <form id="form" class="container" method="POST">
-        
-                    <h1>Login</h1> <input autocomplete="off" id="username" type="text" placeholder="Username"> <input autocomplete="off" id="password" type="password" placeholder="Password"> <button class="submit" type="submit">Log in</button> </form>
-            </main>
+            <div class="container">
+                <form class="form" id="login">
+                    <h1 class="form__title">Login</h1>
+                    <div class="form__message form__message--error"></div>
+                    <div class="form__input-group">
+                        <input type="text" class="form__input" autofocus placeholder="Username or email">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <div class="form__input-group">
+                        <input type="password" class="form__input" autofocus placeholder="Password">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <button class="form__button" type="submit">Continue</button>
+                    <p class="form__text">
+                        <a href="#" class="form__link">Forgot your password?</a>
+                    </p>
+                    <p class="form__text">
+                        <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
+                    </p>
+                </form>
+                <form class="form form--hidden" id="createAccount">
+                    <h1 class="form__title">Create Account</h1>
+                    <div class="form__message form__message--error"></div>
+                    <div class="form__input-group">
+                        <input type="text" id="signupUsername" class="form__input" autofocus placeholder="Username">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <div class="form__input-group">
+                        <input type="text" class="form__input" autofocus placeholder="Email Address">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <div class="form__input-group">
+                        <input type="password" class="form__input" autofocus placeholder="Password">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <div class="form__input-group">
+                        <input type="password" class="form__input" autofocus placeholder="Confirm password">
+                        <div class="form__input-error-message"></div>
+                    </div>
+                    <button class="form__button" type="submit">Continue</button>
+                    <p class="form__text">
+                        <a class="form__link" href="./" id="linkLogin">Already have an account? Sign in</a>
+                    </p>
+                </form>
+            </div>
+            <script src="js/main.js"></script>  
         </main>
     </header>
 </body>
