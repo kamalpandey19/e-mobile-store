@@ -1,3 +1,4 @@
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -32,12 +33,69 @@ document.addEventListener("DOMContentLoaded", () => {
         createAccountForm.classList.add("form--hidden");
     });
 
-    loginForm.addEventListener("submit", e => {
+    createAccountForm.addEventListener("submit",async e => {
         e.preventDefault();
+        const email=document.getElementById("RegisterEmail").value
+        const password=document.getElementById("RegisterPassword").value
+        const UserName=document.getElementById("UserName").value
+        const RegisterPasswordConf=document.getElementById("RegisterPasswordConf").value
+        let data ={
+           email: email,
+            password:password,
+            username:UserName,
+            passwordConf:RegisterPasswordConf
 
+        }
         // Perform your AJAX/Fetch login
-
-        setFormMessage(loginForm, "error", "Invalid username/password combination");
+        const response=await fetch("http://localhost:3000/register",{
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers:{
+              'Content-Type': 'application/json'
+            }
+          })
+          let res =await response.json()
+          if(res.Success){
+            setFormMessage(createAccountForm, "success", res.Success);
+            setTimeout(()=>{
+                e.preventDefault();
+                createAccountForm.classList.add("form--hidden");
+                loginForm.classList.remove("form--hidden");
+                console.log("run")
+            },500)
+          }else{
+            setFormMessage(createAccountForm, "error", res.Error);
+          }
+        
+    });
+    loginForm.addEventListener("submit",async e => {
+        e.preventDefault();
+        const email=document.getElementById("loginEmail").value
+        const password=document.getElementById("loginPassword").value
+        let data ={
+            email,
+            password
+        }
+        // Perform your AJAX/Fetch login
+        const response=await fetch("http://localhost:3000/login",{
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(data), // data can be `string` or {object}!
+            headers:{
+              'Content-Type': 'application/json'
+            }
+          })
+          let res =await response.json()
+          if(res.Success){
+            setFormMessage(loginForm, "success", res.message);
+            localStorage.setItem("buttonvalue","Logout")
+            localStorage.setItem("user",JSON.stringify(res.userInfo))
+            setTimeout(()=>{
+                window.location.replace("/index.html")
+            },1000)
+          }else{
+            setFormMessage(loginForm, "error", res.message);
+          }
+        
     });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
